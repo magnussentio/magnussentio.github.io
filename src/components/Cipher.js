@@ -76,7 +76,7 @@ export default function CipherCompass() {
           if (response === "granted") {
             window.addEventListener("deviceorientation", handler, true);
           } else {
-            alert("has to be allowed!");
+            alert("Device Orientation must be allowed to use the Cipher.");
           }
         })
         .catch(() => alert("not supported"));
@@ -107,7 +107,7 @@ export default function CipherCompass() {
       <div>pointDegree:{pointDegree}</div>
       <div>coords?.latitude:{coords?.latitude}</div>
       <div>coords?.longitude:{coords?.longitude}</div>
-      <h1>Hello CodeSandbox</h1>
+      <h1>Cipher</h1>
       <div className="compass">
         <div className="arrow" />
         <div

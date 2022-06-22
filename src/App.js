@@ -75,11 +75,9 @@ const App = () => {
     return (
       <div>
         <button onClick={disconnectWallet}>Disconnect Wallet</button>
-        <p> Your address: {address}</p>
-        <CipherCompass />
-        
-
+        <p> Your address: {address}</p>      
       </div>
+      <CipherCompass />
     );
 
   }

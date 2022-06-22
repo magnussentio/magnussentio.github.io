@@ -5,7 +5,7 @@ import App from './App';
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react"
 import Surface from './components/Surface'
 import Header from './components/Header'
-import Cipher from './components/Cipher'
+import { Cipher } from './components/Cipher'
 
 
 const activeChainId = ChainId.Rinkeby;

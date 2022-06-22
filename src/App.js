@@ -10,6 +10,7 @@ import {
 } from '@thirdweb-dev/react'
 
 import { useState } from 'react'
+import CipherCompass from './components/Cipher'
 
 function truncateAddress(address) {
   return '${address.slice(0, 6)}...${address.slice(-4)}';
@@ -75,6 +76,7 @@ const App = () => {
       <div>
         <button onClick={disconnectWallet}>Disconnect Wallet</button>
         <p> Your address: {address}</p>
+        <CipherCompass />
         
 
       </div>

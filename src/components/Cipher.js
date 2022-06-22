@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"; 
 import { useGeolocated } from "react-geolocated";
 
-export default function Cipher() {
+export default function CipherCompass() {
   const {
     coords,
     isGeolocationAvailable,

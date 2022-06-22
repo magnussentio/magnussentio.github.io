@@ -5,7 +5,7 @@ import App from './App';
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react"
 import Surface from './components/Surface'
 import Header from './components/Header'
-import { CipherCompass } from './components/Cipher'
+import CipherCompass from './components/Cipher'
 
 
 const activeChainId = ChainId.Rinkeby;
@@ -16,9 +16,8 @@ ReactDOM.render(
     	<Header />
     	<App />
 		<Surface />
-		<Cipher />
-		
-		
+		<CipherCompass />
+		<div>footer</div>
 	</ThirdwebProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,7 +1,7 @@
 const Surface = () => {
 	return (
 		<div className="surface">
-		SurfaceCheck
+		Surface
 		</div>
 		)
 }

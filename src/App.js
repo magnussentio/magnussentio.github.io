@@ -73,12 +73,14 @@ const App = () => {
 
   if (balance > 0) {
     return (
+      <>
       <div>
         <button onClick={disconnectWallet}>Disconnect Wallet</button>
         <p> Your address: {address}</p>      
       </div>
       <CipherCompass />
-    );
+    </>
+          );
 
   }
 

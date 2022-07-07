@@ -107,11 +107,7 @@ export default function CipherCompass() {
     setCompassCircleTransform(compassCircleTransform);
 
     // ±15 degree and <0.25km
-    if (distanceCalc < 0.25) {
-      return (
-        <Rune />
-        );
-    };
+
 
     if (
       (pointDegree < Math.abs(compass) &&
@@ -124,8 +120,12 @@ export default function CipherCompass() {
       setMypointStyle(1);
     }
   }; 
- 
 
+    if (distanceCalc < 0.25) {
+    return (
+      <Rune />
+      );
+  };
 
 
   return (

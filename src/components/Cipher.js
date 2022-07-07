@@ -11,6 +11,7 @@ export default function CipherCompass() {
     positionOptions: {
       enableHighAccuracy: false
     },
+    watchPosition : true,
     userDecisionTimeout: 5000
   });
   const [distanceCalc, setDistance] = useState(0);

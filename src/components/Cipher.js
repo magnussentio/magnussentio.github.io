@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"; 
 import { useGeolocated } from "react-geolocated";
+import Rune from './Rune';
 
 export default function CipherCompass() {
   
@@ -105,7 +106,13 @@ export default function CipherCompass() {
     const compassCircleTransform = `translate(-50%, -50%) rotate(${-compass}deg)`;
     setCompassCircleTransform(compassCircleTransform);
 
-    // ±15 degree
+    // ±15 degree and <0.25km
+    if (distanceCalc < 0.25) {
+      return (
+        <Rune />
+        );
+    };
+
     if (
       (pointDegree < Math.abs(compass) &&
         pointDegree + 15 > Math.abs(compass)) ||

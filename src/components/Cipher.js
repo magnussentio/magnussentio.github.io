@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useGeolocated } from "react-geolocated";
 
 export default function CipherCompass() {
-  const {
+  
+ const {
     coords,
     isGeolocationAvailable,
     isGeolocationEnabled
@@ -12,7 +13,7 @@ export default function CipherCompass() {
     },
     userDecisionTimeout: 5000
   });
-
+  const [distanceCalc, setDistance] = useState(0);
   const [pointDegree, setPointDegree] = useState(0);
   const [compassCircleTransformStyle, setCompassCircleTransform] = useState(
     "translate(-50%, -50%)"
@@ -51,10 +52,21 @@ export default function CipherCompass() {
   const calcDegreeToPoint = (latitude, longitude) => {
     // SPECIFIED POINTING GEO-LOCATION
     const point = {
-      lat: 21.422487,
-      lng: 39.826206
+      lat: 40.44187927220261,
+      lng: -80.01270058756026
     };
-
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(latitude-point.lat);  // deg2rad below
+    var dLon = deg2rad(longitude-point.lng); 
+    var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(point.lat)) * Math.cos(deg2rad(latitude)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+    
+    setDistance(distanceCalc + d);
     const phiK = (point.lat * Math.PI) / 180.0;
     const lambdaK = (point.lng * Math.PI) / 180.0;
     const phi = (latitude * Math.PI) / 180.0;
@@ -68,6 +80,9 @@ export default function CipherCompass() {
       );
     return Math.round(psi);
   };
+  function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
   const startCompass = async () => {
     const checkIos = isIOS();
     if (checkIos) {
@@ -101,12 +116,17 @@ export default function CipherCompass() {
       setMypointStyle(1);
     }
   }; 
+ 
+
+
+
   return (
     <div className="App">
-      <div>myPointStyle:{myPointStyle}</div>
-      <div>pointDegree:{pointDegree}</div>
-      <div>coords?.latitude:{coords?.latitude}</div>
-      <div>coords?.longitude:{coords?.longitude}</div>
+      <div>Distance to Point:{distanceCalc}km</div>
+      <div>Point Style:{myPointStyle}</div>
+      <div>Point Degree:{pointDegree}</div>
+      <div>Current Latitude:{coords?.latitude}</div>
+      <div>Current Longitude:{coords?.longitude}</div>
       <h1>Cipher</h1>
       <div className="compass">
         <div className="arrow" />

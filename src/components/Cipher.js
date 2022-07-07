@@ -67,7 +67,7 @@ export default function CipherCompass() {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     var d = R * c; // Distance in km
     
-    setDistance(distanceCalc + d);
+    setDistance(d);
     const phiK = (point.lat * Math.PI) / 180.0;
     const lambdaK = (point.lng * Math.PI) / 180.0;
     const phi = (latitude * Math.PI) / 180.0;

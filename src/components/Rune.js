@@ -1,7 +1,7 @@
 const Rune = () => {
 	return (
 		<div className="rune">
-		Rune Spring
+		<h1>Rune Spring Located! Happy Minting!</h1>
 		</div>
 		)
 }

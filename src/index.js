@@ -17,7 +17,7 @@ ReactDOM.render(
     	<App />
 		<Surface />
 		
-		<div>bb</div>
+		<div>Footer</div>
 	</ThirdwebProvider>
   </React.StrictMode>,
   document.getElementById('root')

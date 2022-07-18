@@ -1,9 +1,10 @@
-const Rune = () => {
+export default function Rune(){
+	
+
 	return (
 		<div className="rune">
-		Rune Spring
+		<h1>Rune Spring Located! Lets Mint!</h1>
 		</div>
 		)
 }
 
-export default Rune

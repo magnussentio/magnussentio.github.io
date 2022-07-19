@@ -9,7 +9,11 @@ import {
   useNFTBalance,
 } from '@thirdweb-dev/react'
 
+
 import { useState, useEffect } from 'react'
+
+
+
 import CipherCompass from './components/Cipher'
 
 function truncateAddress(address) {
@@ -144,8 +148,11 @@ export default function App() {
         <p> Your address: {address}</p>      
       </div>
 
+
       <button onClick={handleClick}>Cipher</button>
       {isShown && <CipherCompass dataRuneActiveMessage={runeActiveMessage} />}
+      <CipherCompass />
+
     </>
           );
 

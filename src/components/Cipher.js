@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useGeolocated } from "react-geolocated";
 import Rune from './Rune';
 
+
 export default function CipherCompass({dataRuneActiveMessage}) {
   const RuneActive = dataRuneActiveMessage;
   const RuneActivated = "Rune Activated"
@@ -36,6 +37,10 @@ export default function CipherCompass({dataRuneActiveMessage}) {
       setPointDegree(resP);
     }
   };
+
+
+
+
 
   useEffect(() => {
     if (!isGeolocationAvailable) {
@@ -125,6 +130,7 @@ export default function CipherCompass({dataRuneActiveMessage}) {
     }
   }; 
 
+
  if (distanceCalc < 25) {
     if (RuneActive === RuneActivated) {
       return (
@@ -142,10 +148,17 @@ export default function CipherCompass({dataRuneActiveMessage}) {
         
    
 
+    if (distanceCalc < 0.25) {
+    return (
+      <Rune />
+      );
+  };
+
+
 
   return (
     <div className="App">
-      
+
       <div>Distance to Point:{distanceCalc}km</div>
       <div>Point Style:{myPointStyle}</div>
       <div>Point Degree:{pointDegree}</div>
@@ -165,4 +178,8 @@ export default function CipherCompass({dataRuneActiveMessage}) {
       </button>
     </div>
   );
+
 }
+
+
+

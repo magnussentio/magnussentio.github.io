@@ -5,10 +5,10 @@ const handler = async (event) => {
 const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
   process.env.AIRTABLE_BASE_ID
 )
-
 // Configure table name
 const table = base(process.env.AIRTABLE_TABLE_NAME)
-const etrnlAuth = async (tagId, eCode, enc, cmac) => {
+
+const etrnlAuth = async (tagId, eCode, enc, cmac, base, table) => {
   try {
     console.log(tagId)
     console.log(eCode)
@@ -33,7 +33,8 @@ const etrnlAuth = async (tagId, eCode, enc, cmac) => {
 
       if ( authentic ) {
 
-        console.log("Holy Shit AUTHENTIC"); // Show authentic product page
+         // Show authentic product page
+
         const date = new Date();
         await table
         .create({
@@ -44,20 +45,29 @@ const etrnlAuth = async (tagId, eCode, enc, cmac) => {
           cmac,
         })
         .then((records) => {
-          console.log("Successfully inserted into airtable")
+          console.log("Successfully inserted authentic rune into database")
         })
+        return {
+          statusCode: 202,
+          body: JSON.stringify({ message: "Authentic"})
+        }
 /*      .catch((err) => {
         console.log(Error.err)
       })*/
       } else {
+        return {
+          statusCode: 600,
+          body: JSON.stringify({ message: "Inauthentic"})
+        }
 
-        console.log("Good fucking luck"); // Show inauthentic product page
+         // Show inauthentic product page
 
       }
   } catch(err) {
     console.error(err);
   }
 };
+
   try {
     const { httpMethod } = event
     let fields = JSON.parse(event.body)
@@ -110,44 +120,39 @@ const etrnlAuth = async (tagId, eCode, enc, cmac) => {
         const timeDif = d2 - d1
         console.log(timeDif)
         if ((timeDif) > 30 * 60 * 1000) {
-          console.log("this bitch is old")
-          
+          console.log("old rune")
+          return {
+            statusCode: 202,
+            body: JSON.stringify({ message: "Rune Decayed"})
+          } 
+
+        } else {
+            return {
+              statusCode: 202,
+              body: JSON.stringify({ message: "Authentic" })
+            }
         }
+        
 
       });
 
     } else {
       console.log("No records found")
       console.log("ETRNL TIME")
-      etrnlAuth(tagId, eCode, enc , cmac);
+      etrnlAuth(tagId, eCode, enc , cmac, base, table);
 
     }
  
     });
     
 
-   /* await table
-      .create({
-        createdTime: date.toISOString(),
-        tagId,
-        eCode,
-        enc,
-        cmac,
-      })
-      .then((records) => {
-        console.log("Successfully inserted into airtable")
-      })*/
-/*      .catch((err) => {
-        console.log(Error.err)
-      })*/
-    return {
-      statusCode: 202,
-      body: JSON.stringify({ message: "Authentic" })
 
-    }
+
   } catch (error) {
     console.log(error)
-    return { statusCode: 500, body: "Oops! Something went wrong." }
+    return { 
+      statusCode: 500, 
+      body: "Oops! Something went wrong." }
   }
 }
 

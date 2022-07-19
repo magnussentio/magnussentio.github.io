@@ -60,6 +60,14 @@ export default function App() {
       if (content.message === "Authentic") {
         setRuneActiveMessage("Rune Activated")
       }
+      if (content.message === "Inauthentic") {
+        setRuneActiveMessage("Rune Inauthentic")
+      if (content.message === "Rune Decayed") {
+        setRuneActiveMessage("Rune has Decayed, Scan to Reactivate")
+      }
+      } else {
+        setRuneActiveMessage("Waiting for Rune Authentication")
+      }
     } catch(err) {
       console.error(err);
     }

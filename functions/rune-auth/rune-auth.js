@@ -1,3 +1,5 @@
+const fetch = require("node-fetch")
+
 const Airtable = require("airtable")
 
 const handler = async (event) => {

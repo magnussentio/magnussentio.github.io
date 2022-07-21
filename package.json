@@ -33,7 +33,7 @@
 
     "start:backend": "nodemon index.js",
     "start:frontend": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false && CI=false && react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false && CI=false && react-scripts build; netlify build functions",
 
     "test": "react-scripts test",
     "eject": "react-scripts eject",

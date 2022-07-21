@@ -1,8 +1,9 @@
-[dev]
+[build]
 
 
 	functions = "functions"
 	publish = "src"
+	
 
 
 	
